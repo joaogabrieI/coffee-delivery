@@ -107,14 +107,15 @@
 
 ## Fase 3 — Domínio, catálogo e carrinho
 
-### [ ] T-09 — Tipos, catálogo local e utilitários de preço/formatação
+### [x] T-09 — Tipos, catálogo local e utilitários de preço/formatação
 - **Objetivo:** modelar o domínio e as regras de cálculo em centavos.
 - **Requisitos:** RF-01, RF-10, RN-03, RN-04, RN-08
 - **Arquivos:** `src/types/*.ts`, `src/data/coffees.ts`, `src/utils/{pricing,format}.ts`
 - **Pronto quando:** `Coffee`, `CartItem`, `DeliveryAddress`, `PaymentMethod`, `Order` tipados; `DELIVERY_FEE_CENTS` único; funções puras exportadas.
 - **Teste:** TC-09, TC-10, TC-11, TC-12, TC-13 (Vitest).
 - **Commit:** `feat: add domain types, catalog and pricing utils` + `test: cover pricing and formatting`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** pricing.test.ts: TC-09, TC-10, TC-11, TC-12, TC-13 + buildCartLines, clampQuantity, integridade do catálogo e existência das 14 imagens — 55 testes passando.
 
 ### [ ] T-10 — Header e logo
 - **Objetivo:** Header com logo, `ThemeToggle` e espaço para o contador.

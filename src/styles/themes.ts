@@ -1,6 +1,7 @@
+import type { ThemeMode } from '../types/theme'
 import { fonts, fontSize, radius, shadow, space } from './tokens'
 
-export type ThemeMode = 'light' | 'dark'
+export type { ThemeMode }
 
 /**
  * Cores SEMÂNTICAS: o nome diz o papel ("primary", "textMuted"), não a cor.
