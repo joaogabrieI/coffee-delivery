@@ -147,14 +147,15 @@
 - **Status:** Concluída
 - **Teste realizado:** cartReducer.test.ts: TC-01..TC-08 e TC-17 (+ entradas não-lista e ids repetidos). TC-08 congela o estado (Object.freeze) para provar que não há mutação.
 
-### [ ] T-13 — `CartProvider` e `useCart`
+### [x] T-13 — `CartProvider` e `useCart`
 - **Objetivo:** expor estado e ações; derivar `lines` e `totals`.
 - **Requisitos:** RF-03, RF-04, RF-05, RF-10
 - **Arquivos:** `src/contexts/CartContext.tsx`, `src/hooks/useCart.ts`
 - **Pronto quando:** ações disponíveis; `totals` derivado por `useMemo`; erro claro fora do provider.
 - **Teste:** teste de integração do provider (adicionar/remover e verificar totais).
 - **Commit:** `feat: add cart context and useCart hook`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** cartContext.test.tsx: add/decrement/remove/clear atualizam lines e totals derivados; useCart fora do provider lança erro claro.
 
 ### [ ] T-14 — `QuantityInput` e adicionar ao carrinho
 - **Objetivo:** selecionar quantidade (1..99) e adicionar cafés.

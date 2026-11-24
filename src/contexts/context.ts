@@ -1,5 +1,6 @@
 import { createContext } from 'react'
-import type { ThemeMode } from '../styles/themes'
+import type { CartItem, CartLine, Totals } from '../types/cart'
+import type { ThemeMode } from '../types/theme'
 
 /**
  * Objetos de contexto ficam separados dos Providers (arquivos .tsx), para que o
@@ -12,3 +13,18 @@ export interface ThemeContextValue {
 }
 
 export const ThemeContext = createContext<ThemeContextValue | null>(null)
+
+export interface CartContextValue {
+  items: CartItem[]
+  /** Derivado: itens + dados do catálogo. */
+  lines: CartLine[]
+  /** Derivado: subtotal, entrega, total e unidades. */
+  totals: Totals
+  addItem: (coffeeId: string, quantity: number) => void
+  increment: (coffeeId: string) => void
+  decrement: (coffeeId: string) => void
+  removeItem: (coffeeId: string) => void
+  clearCart: () => void
+}
+
+export const CartContext = createContext<CartContextValue | null>(null)

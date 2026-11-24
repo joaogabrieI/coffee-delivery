@@ -23,4 +23,7 @@ afterEach(() => {
   cleanup()
   localStorage.clear()
   vi.unstubAllGlobals()
+  vi.restoreAllMocks()
+  // volta o matchMedia para a implementação padrão (sistema em modo claro)
+  vi.mocked(window.matchMedia).mockReset()
 })
