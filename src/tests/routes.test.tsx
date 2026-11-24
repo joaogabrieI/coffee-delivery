@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { screen } from '@testing-library/react'
+import { renderWithProviders } from './renderWithProviders'
 import { App } from '../App'
 
 describe('rotas (RF-07)', () => {
@@ -9,11 +9,7 @@ describe('rotas (RF-07)', () => {
     ['/success', /pedido confirmado/i],
     ['/qualquer-coisa', /página não encontrada/i],
   ])('renderiza %s', (path, title) => {
-    render(
-      <MemoryRouter initialEntries={[path]}>
-        <App />
-      </MemoryRouter>,
-    )
+    renderWithProviders(<App />, { route: path })
     expect(screen.getByRole('heading', { level: 1, name: title })).toBeInTheDocument()
   })
 })

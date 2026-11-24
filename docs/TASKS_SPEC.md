@@ -93,14 +93,15 @@
 - **Status:** Concluída
 - **Teste realizado:** contrast.test.ts: 18 pares texto/fundo, botão e foco verificados nos 2 temas (≥4,5:1 texto, ≥3:1 ícones/foco) + mesma interface nos 2 temas. Ajustes vs. Figma: textMuted #736B69, accentStrong #B06F0F, texto escuro sobre amarelo.
 
-### [ ] T-08 — ThemeProvider, `useTheme` e `ThemeToggle`
+### [x] T-08 — ThemeProvider, `useTheme` e `ThemeToggle`
 - **Objetivo:** alternar e persistir o tema (fallback `prefers-color-scheme`).
 - **Requisitos:** RF-14
 - **Arquivos:** `src/contexts/ThemeContext.tsx`, `src/hooks/{useTheme,useLocalStorage}.ts`, `src/components/ThemeToggle/`
 - **Pronto quando:** botão acessível alterna o tema; escolha persiste após refresh; sem escolha usa o do sistema.
 - **Teste:** TC-29 + manual (refresh).
 - **Commit:** `feat: add theme toggle with persistence`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** theme.test.tsx (TC-29): sistema escuro sem escolha → dark; alternar muda data-theme/aria-pressed e grava; escolha salva vence o sistema; valor corrompido ignorado. Manual: alternado no navegador e recarregado (F5) — escolha mantida com sistema em modo escuro.
 
 ---
 
