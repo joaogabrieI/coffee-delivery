@@ -7,6 +7,10 @@ interface FieldProps {
   label: string
   optional?: boolean
   error?: string
+  /**
+   * Mensagem dinâmica (ex.: status do CEP). Quando a prop existe, a região
+   * aria-live é sempre renderizada — assim o leitor de tela anuncia as mudanças.
+   */
   hint?: ReactNode
   area: string
   /** Recebe os atributos de acessibilidade a aplicar no <input>/<select>. */
@@ -33,7 +37,11 @@ export function Field({ id, label, optional, error, hint, area, children }: Fiel
         {optional && <span> (opcional)</span>}
       </Label>
       {children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': describedBy })}
-      {hint && <Hint id={hintId}>{hint}</Hint>}
+      {hint !== undefined && (
+        <Hint id={hintId} aria-live="polite">
+          {hint}
+        </Hint>
+      )}
       {error && (
         <ErrorText id={errorId}>
           <WarningCircle size={16} weight="fill" aria-hidden />

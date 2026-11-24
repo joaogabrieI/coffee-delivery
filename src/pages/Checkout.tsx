@@ -5,6 +5,8 @@ import { CartSummary } from '../components/CartSummary'
 import { DeliveryAddressForm } from '../components/DeliveryAddressForm'
 import { EmptyCart } from '../components/EmptyCart'
 import { useCart } from '../hooks/useCart'
+import { useCep } from '../hooks/useCep'
+import { isUF } from '../types/address'
 import {
   type CheckoutFormData,
   type CheckoutFormInput,
@@ -21,6 +23,8 @@ export function Checkout() {
   const {
     register,
     handleSubmit,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm<CheckoutFormInput, unknown, CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
@@ -29,6 +33,27 @@ export function Checkout() {
       address: { cep: '', street: '', number: '', complement: '', neighborhood: '', city: '' },
     },
   })
+
+  const { status: cepStatus, lookup, retry } = useCep()
+
+  /** Preenche só os campos que a API trouxe; número e complemento NUNCA são tocados. */
+  function fillAddress(data: Awaited<ReturnType<typeof lookup>>) {
+    if (!data) return
+    const options = { shouldValidate: true, shouldDirty: true }
+    if (data.street) setValue('address.street', data.street, options)
+    if (data.neighborhood) setValue('address.neighborhood', data.neighborhood, options)
+    if (data.city) setValue('address.city', data.city, options)
+    if (isUF(data.uf)) setValue('address.uf', data.uf, options)
+    setFocus('address.number')
+  }
+
+  async function handleCepChange(cep: string) {
+    fillAddress(await lookup(cep))
+  }
+
+  async function handleRetryCep() {
+    fillAddress(await retry())
+  }
 
   function handleConfirm(data: CheckoutFormData) {
     // Implementado na T-21 (snapshot do pedido).
@@ -41,7 +66,13 @@ export function Checkout() {
         <h1>Complete seu pedido</h1>
         <form id={FORM_ID} noValidate onSubmit={handleSubmit(handleConfirm)}>
           <Panel>
-            <DeliveryAddressForm register={register} errors={errors.address} />
+            <DeliveryAddressForm
+              register={register}
+              errors={errors.address}
+              cepStatus={cepStatus}
+              onCepChange={handleCepChange}
+              onRetryCep={handleRetryCep}
+            />
           </Panel>
         </form>
       </Column>

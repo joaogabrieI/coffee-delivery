@@ -1,18 +1,68 @@
-import { MapPinLine } from '@phosphor-icons/react'
+import { ArrowClockwise, CheckCircle, MapPinLine, WarningCircle } from '@phosphor-icons/react'
 import type { FieldErrors, UseFormRegister } from 'react-hook-form'
+import type { CepStatus } from '../../hooks/useCep'
 import type { CheckoutFormInput } from '../../schemas/checkoutSchema'
 import { UFS } from '../../types/address'
 import { maskCep } from '../../utils/cep'
 import { Field } from './Field'
-import { FieldsGrid, Input, PanelDescription, PanelLegend, Select } from './styles'
+import {
+  CepMessage,
+  FieldsGrid,
+  Input,
+  PanelDescription,
+  PanelLegend,
+  RetryButton,
+  Select,
+} from './styles'
 
 interface DeliveryAddressFormProps {
   register: UseFormRegister<CheckoutFormInput>
   errors: FieldErrors<CheckoutFormInput>['address']
+  cepStatus: CepStatus
+  /** Chamado a cada digitação no CEP (já com máscara). A página decide se consulta. */
+  onCepChange: (cep: string) => void
+  onRetryCep: () => void
 }
 
-/** Campos de endereço (RF-08). Recebe `register` e `errors` do useForm da página. */
-export function DeliveryAddressForm({ register, errors }: DeliveryAddressFormProps) {
+const CEP_MESSAGES: Record<Exclude<CepStatus, 'idle'>, string> = {
+  loading: 'Buscando endereço…',
+  success: 'Endereço encontrado. Confira os dados e informe o número.',
+  'not-found': 'CEP não encontrado. Confira os números ou preencha o endereço manualmente.',
+  error: 'Não foi possível consultar o CEP agora. Tente novamente ou preencha manualmente.',
+}
+
+function CepFeedback({ status, onRetry }: { status: CepStatus; onRetry: () => void }) {
+  if (status === 'idle') return null
+  const isProblem = status === 'not-found' || status === 'error'
+  const Icon = isProblem ? WarningCircle : status === 'success' ? CheckCircle : null
+
+  return (
+    <>
+      <CepMessage $tone={isProblem ? 'error' : 'info'}>
+        {Icon && <Icon size={16} weight="fill" aria-hidden />}
+        {CEP_MESSAGES[status]}
+      </CepMessage>
+      {status === 'error' && (
+        <RetryButton type="button" onClick={onRetry}>
+          <ArrowClockwise size={14} aria-hidden />
+          Tentar novamente
+        </RetryButton>
+      )}
+    </>
+  )
+}
+
+/**
+ * Campos de endereço (RF-08). Recebe `register`/`errors` do useForm da página e o
+ * status da consulta de CEP. Todos os campos continuam editáveis em qualquer status.
+ */
+export function DeliveryAddressForm({
+  register,
+  errors,
+  cepStatus,
+  onCepChange,
+  onRetryCep,
+}: DeliveryAddressFormProps) {
   return (
     <fieldset aria-describedby="address-description">
       <PanelLegend>
@@ -24,15 +74,23 @@ export function DeliveryAddressForm({ register, errors }: DeliveryAddressFormPro
       </PanelDescription>
 
       <FieldsGrid>
-        <Field id="cep" label="CEP" area="cep" error={errors?.cep?.message}>
+        <Field
+          id="cep"
+          label="CEP"
+          area="cep"
+          error={errors?.cep?.message}
+          hint={<CepFeedback status={cepStatus} onRetry={onRetryCep} />}
+        >
           {(a11y) => (
             <Input
               {...a11y}
               {...register('address.cep', {
                 onChange: (event) => {
                   event.target.value = maskCep(event.target.value)
+                  onCepChange(event.target.value)
                 },
               })}
+              aria-busy={cepStatus === 'loading'}
               inputMode="numeric"
               autoComplete="postal-code"
               placeholder="00000-000"

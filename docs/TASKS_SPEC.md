@@ -211,14 +211,15 @@
 - **Status:** Concluída
 - **Teste realizado:** checkoutSchema.test.ts (TC-14, TC-15): CEP inválido (5 casos), UF inválida/vazia, obrigatórios vazios, complemento opcional/limite, pagamento ausente/inválido/3 válidos, máscara. addressForm.test.tsx: labels, máscara, aria-invalid + aria-describedby ao sair do campo, fieldset com nome. Manual: captura em 1280 px.
 
-### [ ] T-19 — Integração com ViaCEP (`useCep`)
+### [x] T-19 — Integração com ViaCEP (`useCep`)
 - **Objetivo:** preencher rua, bairro, cidade e UF a partir do CEP.
 - **Requisitos:** RF-08, RN-07, RN-08
 - **Arquivos:** `src/hooks/useCep.ts`, `src/utils/cep.ts`, `src/components/DeliveryAddressForm/`
 - **Pronto quando:** CEP válido preenche os campos e foca o número; trata `loading`, inválido, não encontrado e falha da API (com tentar novamente e edição manual); cancela requisições anteriores.
 - **Teste:** TC-24, TC-25 (fetch mockado) + manual com CEP real.
 - **Commit:** `feat: integrate ViaCEP lookup`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** cep.test.tsx (fetch mockado): TC-24 (preenche, foca número, não sobrescreve complemento), <8 dígitos não consulta, TC-25 (não encontrado + edição manual; falha de rede + tentar novamente; HTTP 500), cancelamento da requisição anterior + aria-busy. Manual com CEP real 01001-000 → Praça da Sé / Sé / São Paulo / SP.
 
 ### [ ] T-20 — Seleção de forma de pagamento
 - **Objetivo:** escolher crédito, débito ou dinheiro (apenas informativo).

@@ -100,7 +100,7 @@ export const Select = styled.select`
   ${control}
 `
 
-export const Hint = styled.p`
+export const Hint = styled.div`
   font-size: ${({ theme }) => theme.fontSize.textXS};
   color: ${({ theme }) => theme.colors.text};
 `
@@ -111,4 +111,31 @@ export const ErrorText = styled.p`
   gap: ${({ theme }) => theme.space.xxs};
   font-size: ${({ theme }) => theme.fontSize.textXS};
   color: ${({ theme }) => theme.colors.error};
+`
+
+export const CepMessage = styled.span<{ $tone: 'info' | 'error' }>`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.space.xxs};
+  color: ${({ theme, $tone }) => ($tone === 'error' ? theme.colors.error : theme.colors.text)};
+
+  svg {
+    flex-shrink: 0;
+  }
+`
+
+export const RetryButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.space.xxs};
+  min-height: 2.75rem;
+  margin-top: ${({ theme }) => theme.space.xxs};
+  padding: 0 ${({ theme }) => theme.space.sm};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.radius.sm};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primaryInk};
+  font-size: ${({ theme }) => theme.fontSize.textXS};
+  font-weight: 700;
+  text-transform: uppercase;
 `

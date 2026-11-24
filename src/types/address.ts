@@ -41,3 +41,6 @@ export interface DeliveryAddress {
   city: string
   uf: UF
 }
+
+/** Type guard: confere se uma string é uma UF válida (ex.: vinda da API). */
+export const isUF = (value: string): value is UF => (UFS as readonly string[]).includes(value)
