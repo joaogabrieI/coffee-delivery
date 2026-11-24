@@ -128,7 +128,8 @@ Consequência para a avaliação: a validação passa a ser feita **depois**, co
 
 - [ ] Conferir as telas com o **Figma** original (o assistente não conseguiu abrir o arquivo).
 - [ ] Rodar o **Lighthouse** no Chrome DevTools (TC-34) e anexar o resultado.
-- [ ] Criar o repositório no GitHub, publicar na Vercel/Netlify (T-27) e colocar o link no README.
+- [x] Repositório público no GitHub: https://github.com/joaogabrieI/coffee-delivery
+- [ ] Publicar na Vercel/Netlify (T-27) e colocar o link no README.
 - [ ] Revisar os commits e treinar a explicação oral (roteiro abaixo).
 
 ## Roteiro de estudo para a apresentação

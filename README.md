@@ -21,7 +21,8 @@
 
 ## 🌐 Aplicação publicada
 
-> **Link:** _a preencher após o deploy (T-27)._
+> **Repositório:** https://github.com/joaogabrieI/coffee-delivery
+> **Link da aplicação:** _a preencher após o deploy (T-27)._
 > O projeto já está configurado para Vercel (`vercel.json`) e Netlify (`public/_redirects`), com
 > fallback de rotas para que o F5 em `/checkout` e `/success` não dê 404.
 
@@ -73,7 +74,7 @@ Justificativas em [`docs/TECH_SPEC.md`](docs/TECH_SPEC.md) §1 e §15.
 Pré-requisitos: **Node.js ≥ 20.19** e npm.
 
 ```bash
-git clone <url-do-repositório>
+git clone https://github.com/joaogabrieI/coffee-delivery.git
 cd coffee-delivery
 npm install
 npm run dev          # http://localhost:5173
