@@ -177,14 +177,15 @@
 - **Status:** Concluída
 - **Teste realizado:** cartBadge.test.tsx (TC-21): 3 cliques de adicionar (2+1+1 unidades em 2 linhas) → badge '4' e link '4 itens no carrinho'; vazio → 'Carrinho vazio' e sem badge. TC-12 coberto em pricing.test.ts.
 
-### [ ] T-16 — Persistência do carrinho (`localStorage`)
+### [x] T-16 — Persistência do carrinho (`localStorage`)
 - **Objetivo:** salvar e recuperar o carrinho com leitura defensiva.
 - **Requisitos:** RF-06, RN-06, RN-10
 - **Arquivos:** `src/hooks/useLocalStorage.ts`, `src/utils/storage.ts`, `src/contexts/CartContext.tsx`
 - **Pronto quando:** refresh mantém itens; JSON corrompido/itens inválidos não quebram a app.
 - **Teste:** TC-16, TC-17, TC-23 + manual (F5).
 - **Commit:** `feat: persist cart in localStorage`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** persistence.test.tsx: TC-16 (JSON corrompido, formato inválido, storage indisponível), TC-23 (remontar mantém o carrinho e o badge), TC-17 com dados reais do storage. Manual: 2 Lattes + 1 Árabe, F5 → '3 itens no carrinho'.
 
 ---
 

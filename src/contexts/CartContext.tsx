@@ -1,8 +1,21 @@
-import { type ReactNode, useCallback, useMemo, useReducer } from 'react'
+import { type ReactNode, useCallback, useEffect, useMemo, useReducer } from 'react'
 import { coffees } from '../data/coffees'
-import { cartReducer, initialCartState } from '../reducers/cartReducer'
+import { type CartAction, cartReducer, initialCartState } from '../reducers/cartReducer'
+import type { CartState } from '../types/cart'
 import { buildCartLines, calcTotals } from '../utils/pricing'
+import { STORAGE_KEYS, readStorage, writeStorage } from '../utils/storage'
 import { type CartContextValue, CartContext } from './context'
+
+const hydrate = (items: unknown): CartAction => ({ type: 'HYDRATE', payload: { items } })
+
+/**
+ * Inicializador preguiçoso do useReducer: roda UMA vez, lê o localStorage e passa
+ * pelo HYDRATE, que descarta itens inválidos ou fora do catálogo (RF-06, RN-10).
+ */
+function loadCart(): CartState {
+  const stored = readStorage<unknown>(STORAGE_KEYS.cart, (value) => value)
+  return cartReducer(initialCartState, hydrate(stored))
+}
 
 /**
  * Estado global do carrinho (Context API + useReducer).
@@ -10,7 +23,22 @@ import { type CartContextValue, CartContext } from './context'
  * novo estado → quem usa useCart() re-renderiza com lines/totals recalculados.
  */
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(cartReducer, initialCartState)
+  const [state, dispatch] = useReducer(cartReducer, undefined, loadCart)
+
+  // Persiste a cada mudança dos itens (o reducer continua puro, sem efeitos).
+  useEffect(() => {
+    writeStorage(STORAGE_KEYS.cart, state.items)
+  }, [state.items])
+
+  // Mantém abas abertas sincronizadas: outra aba alterou o carrinho → HYDRATE.
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== STORAGE_KEYS.cart) return
+      dispatch(hydrate(readStorage<unknown>(STORAGE_KEYS.cart, (value) => value)))
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
 
   // Estado derivado: recalculado só quando os itens mudam.
   const lines = useMemo(() => buildCartLines(state.items, coffees), [state.items])
