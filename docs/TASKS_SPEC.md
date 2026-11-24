@@ -275,14 +275,15 @@
 - **Status:** Concluída
 - **Teste realizado:** e2e/a11y.spec.ts (axe-core, regras WCAG 2.0/2.1/2.2 A e AA): Home, Checkout e Sucesso × claro/escuro × 1280/390 px = 12 auditorias sem violações. Corrigido: nome acessível do link da logo (label-content-name-mismatch) e contraste do wordmark 'Delivery' (3,9→5,5:1). contrast.test.ts ganhou accentInk/bg e error/errorSoft. Lighthouse (TC-34) não executado aqui: rodar no Chrome DevTools.
 
-### [ ] T-25 — Testes de fluxo e cobertura dos requisitos
+### [x] T-25 — Testes de fluxo e cobertura dos requisitos
 - **Objetivo:** completar integração/E2E e fechar lacunas da matriz de rastreabilidade.
 - **Requisitos:** RF-01..RF-16, RN-01..RN-10
 - **Arquivos:** `src/tests/*`, `e2e/*` (opcional)
 - **Pronto quando:** TC-01..TC-29 passam; fluxo completo demonstrado (TC-30).
 - **Teste:** `npm run test:run` e, se houver, `npm run test:e2e`.
 - **Commit:** `test: add integration and e2e flow tests`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** npm run test:run → 131 testes (Vitest, TC-01..TC-29). npm run test:e2e → 23 passaram + 1 pulado (Playwright, Chrome, 1280 e 390 px): TC-30 fluxo completo sem reload + F5 no sucesso, TC-31 compra só com teclado (desktop), TC-32 sem rolagem em 320 px, TC-33 logo/favicon/imagens, tema em todas as telas, F5 em /checkout, 12 auditorias axe.
 
 ### [ ] T-26 — README, AI_USAGE e atualização das SPECs
 - **Objetivo:** documentar execução, branding, decisões e uso da IA.
