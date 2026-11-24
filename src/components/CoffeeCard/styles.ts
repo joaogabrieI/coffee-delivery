@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { TOUCH_TARGET } from '../../styles/tokens'
 
 export const Card = styled.article`
   height: 100%;
@@ -74,5 +75,27 @@ export const Price = styled.p`
     font-family: ${({ theme }) => theme.fonts.title};
     font-size: ${({ theme }) => theme.fontSize.titleM};
     font-weight: 800;
+  }
+`
+
+export const Actions = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.space.xs};
+`
+
+export const AddButton = styled.button<{ $added: boolean }>`
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: ${TOUCH_TARGET};
+  height: ${TOUCH_TARGET};
+  border: 0;
+  border-radius: ${({ theme }) => theme.radius.sm};
+  background: ${({ theme, $added }) => ($added ? theme.colors.accent : theme.colors.primaryStrong)};
+  color: ${({ theme, $added }) => ($added ? theme.colors.accentText : theme.colors.primaryText)};
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary};
   }
 `

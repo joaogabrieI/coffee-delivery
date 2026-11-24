@@ -157,14 +157,15 @@
 - **Status:** Concluída
 - **Teste realizado:** cartContext.test.tsx: add/decrement/remove/clear atualizam lines e totals derivados; useCart fora do provider lança erro claro.
 
-### [ ] T-14 — `QuantityInput` e adicionar ao carrinho
+### [x] T-14 — `QuantityInput` e adicionar ao carrinho
 - **Objetivo:** selecionar quantidade (1..99) e adicionar cafés.
 - **Requisitos:** RF-02, RF-03, RN-01, RN-02
 - **Arquivos:** `src/components/QuantityInput/`, `src/components/CoffeeCard/`
 - **Pronto quando:** −/+ respeitam limites; adicionar repetido acumula na mesma linha.
 - **Teste:** TC-03, TC-04 + TC-21.
 - **Commit:** `feat: add quantity input and add-to-cart`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** quantityInput.test.tsx: − desabilitado no mínimo, + no máximo; no card, escolher 3 e adicionar anuncia 'Latte adicionado ao carrinho' e volta a quantidade para 1. TC-03/TC-04 cobertos no reducer.
 
 ### [ ] T-15 — `CartBadge` no Header
 - **Objetivo:** mostrar a soma de unidades com link para `/checkout`.
