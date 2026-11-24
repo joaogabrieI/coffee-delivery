@@ -137,14 +137,15 @@
 - **Status:** Concluída
 - **Teste realizado:** catalog.test.tsx (TC-20): 14 cards com nome, descrição, preço, tags e imagem com alt. Manual (scripts/screenshots.mjs): 320/390/768/1280 px — 1/1/2/4 colunas, sem rolagem horizontal, sem imagem quebrada.
 
-### [ ] T-12 — `cartReducer` (puro) com testes
+### [x] T-12 — `cartReducer` (puro) com testes
 - **Objetivo:** implementar `ADD_ITEM`, `INCREMENT`, `DECREMENT`, `REMOVE_ITEM`, `CLEAR_CART`, `HYDRATE` de forma imutável.
 - **Requisitos:** RF-03, RF-05, RF-13, RN-01, RN-02, RN-10
 - **Arquivos:** `src/reducers/cartReducer.ts`, `src/tests/cartReducer.test.ts`
 - **Pronto quando:** regras RN-01/02 e limite 1..99 cobertos; reducer não muta o estado.
 - **Teste:** TC-01..TC-08, TC-17.
 - **Commit:** `feat: add cart reducer` + `test: cover cart reducer`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** cartReducer.test.ts: TC-01..TC-08 e TC-17 (+ entradas não-lista e ids repetidos). TC-08 congela o estado (Object.freeze) para provar que não há mutação.
 
 ### [ ] T-13 — `CartProvider` e `useCart`
 - **Objetivo:** expor estado e ações; derivar `lines` e `totals`.
