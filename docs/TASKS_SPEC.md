@@ -25,14 +25,15 @@
 - **Status:** Concluída
 - **Teste realizado:** Revisão do PRD contra o enunciado (Blackboard) e a página do Notion (RF-01..16, RN-01..10, rubrica). Figma não pôde ser aberto no navegador de apoio (sem WebGL); layout seguido a partir do Style Guide descrito no enunciado.
 
-### [ ] T-02 — TECH_SPEC, TASKS_SPEC e AGENTS.md
+### [x] T-02 — TECH_SPEC, TASKS_SPEC e AGENTS.md
 - **Objetivo:** fechar o planejamento técnico antes de codar.
 - **Requisitos:** todos (rastreabilidade)
 - **Arquivos:** `docs/TECH_SPEC.md`, `docs/TASKS_SPEC.md`, `AGENTS.md`
 - **Pronto quando:** stack justificada, tipos, reducer, rotas, schema, testes e matriz PRD→técnica; checklist e diretrizes da IA prontos.
 - **Teste:** conferir que todo RF/RN aparece na matriz da TECH_SPEC.
 - **Commit:** `docs: add TECH_SPEC, TASKS_SPEC and AGENTS`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** Conferido que todos os RF/RN aparecem na matriz da TECH_SPEC §14.
 
 ---
 
