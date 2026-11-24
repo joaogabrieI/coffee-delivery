@@ -26,6 +26,10 @@ export const Column = styled.div`
 `
 
 export const Panel = styled.section`
+  & + & {
+    margin-top: ${({ theme }) => theme.space.sm};
+  }
+
   padding: ${({ theme }) => theme.space.lg};
   border-radius: ${({ theme }) => theme.radius.sm};
   background: ${({ theme }) => theme.colors.surface};

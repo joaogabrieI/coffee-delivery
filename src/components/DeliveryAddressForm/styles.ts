@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { media } from '../../styles/tokens'
 
 /** Título do painel. Reaproveitado pelo seletor de pagamento (mesmo visual). */
-export const PanelLegend = styled.legend`
+export const PanelLegend = styled.legend<{ $iconColor?: 'accent' | 'primary' }>`
   float: left; /* faz o <legend> se comportar como bloco comum dentro do fieldset */
   width: 100%;
   display: flex;
@@ -13,7 +13,8 @@ export const PanelLegend = styled.legend`
 
   > svg {
     flex-shrink: 0;
-    color: ${({ theme }) => theme.colors.accentStrong};
+    color: ${({ theme, $iconColor = 'accent' }) =>
+      $iconColor === 'primary' ? theme.colors.primary : theme.colors.accentStrong};
   }
 `
 

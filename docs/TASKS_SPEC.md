@@ -221,14 +221,15 @@
 - **Status:** Concluída
 - **Teste realizado:** cep.test.tsx (fetch mockado): TC-24 (preenche, foca número, não sobrescreve complemento), <8 dígitos não consulta, TC-25 (não encontrado + edição manual; falha de rede + tentar novamente; HTTP 500), cancelamento da requisição anterior + aria-busy. Manual com CEP real 01001-000 → Praça da Sé / Sé / São Paulo / SP.
 
-### [ ] T-20 — Seleção de forma de pagamento
+### [x] T-20 — Seleção de forma de pagamento
 - **Objetivo:** escolher crédito, débito ou dinheiro (apenas informativo).
 - **Requisitos:** RF-09, RN-05
 - **Arquivos:** `src/components/PaymentMethodSelector/`
 - **Pronto quando:** exatamente uma opção exigida; navegável por teclado; erro acessível.
 - **Teste:** TC-15.
 - **Commit:** `feat: add payment method selector`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** payment.test.tsx (TC-15 na UI): grupo nomeado com 3 rádios e seleção única; setas do teclado trocam a opção; erro ligado ao grupo por aria-describedby + aria-invalid; nenhum campo de cartão. O teste revelou um aria-hidden que apagava os nomes dos rádios — corrigido.
 
 ### [ ] T-21 — Confirmar pedido, snapshot e limpeza do carrinho
 - **Objetivo:** validar, criar `Order` (snapshot), salvar `last-order`, limpar carrinho e navegar.

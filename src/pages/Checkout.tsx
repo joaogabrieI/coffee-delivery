@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { CartItem } from '../components/CartItem'
 import { CartSummary } from '../components/CartSummary'
 import { DeliveryAddressForm } from '../components/DeliveryAddressForm'
 import { EmptyCart } from '../components/EmptyCart'
+import { PaymentMethodSelector } from '../components/PaymentMethodSelector'
 import { useCart } from '../hooks/useCart'
 import { useCep } from '../hooks/useCep'
 import { isUF } from '../types/address'
@@ -22,6 +23,7 @@ export function Checkout() {
 
   const {
     register,
+    control,
     handleSubmit,
     setValue,
     setFocus,
@@ -72,6 +74,20 @@ export function Checkout() {
               cepStatus={cepStatus}
               onCepChange={handleCepChange}
               onRetryCep={handleRetryCep}
+            />
+          </Panel>
+          <Panel>
+            <Controller
+              control={control}
+              name="paymentMethod"
+              render={({ field, fieldState }) => (
+                <PaymentMethodSelector
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={fieldState.error?.message}
+                  inputRef={field.ref}
+                />
+              )}
             />
           </Panel>
         </form>
