@@ -59,14 +59,15 @@
 - **Status:** Concluída
 - **Teste realizado:** npm run lint && npm run typecheck && npm run test:run — 1 teste de fumaça passou. (oxlint do template trocado por ESLint + Prettier, conforme TECH_SPEC.)
 
-### [ ] T-05 — Estrutura de pastas, rotas e layout base
+### [x] T-05 — Estrutura de pastas, rotas e layout base
 - **Objetivo:** criar a árvore de diretórios e as 3 rotas com páginas vazias.
 - **Requisitos:** RF-07
 - **Arquivos:** `src/App.tsx`, `src/main.tsx`, `src/pages/{Home,Checkout,Success}.tsx`, `src/components/PageLayout/`
 - **Pronto quando:** `/`, `/checkout` e `/success` navegam sem recarregar a página.
 - **Teste:** manual (navegar entre as rotas); TC-30 (parcial).
 - **Commit:** `feat: add routes and base layout`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** routes.test.tsx: /, /checkout, /success e rota inexistente renderizam o <h1> certo (4 testes). Navegação sem reload verificada depois no navegador com <Link>.
 
 ---
 
