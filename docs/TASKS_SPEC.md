@@ -191,14 +191,15 @@
 
 ## Fase 4 — Checkout e sucesso
 
-### [ ] T-17 — Carrinho no Checkout: `CartItem`, `CartSummary`, `EmptyCart`
+### [x] T-17 — Carrinho no Checkout: `CartItem`, `CartSummary`, `EmptyCart`
 - **Objetivo:** listar itens, editar/remover e mostrar subtotal, entrega e total.
 - **Requisitos:** RF-05, RF-10, RN-03, RN-09
 - **Arquivos:** `src/components/{CartItem,CartSummary,EmptyCart}/`, `src/pages/Checkout.tsx`
 - **Pronto quando:** totais atualizam na hora; − bloqueado em 1; remover funciona; carrinho vazio mostra `EmptyCart`.
 - **Teste:** TC-22 + TC-09.
 - **Commit:** `feat: add checkout cart and summary`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** checkoutCart.test.tsx (TC-22): +1 Latte muda total de R$ 33,20 para R$ 43,10 e badge para 4; − desabilitado em 1; remover tira a linha e recalcula. Vazio: EmptyCart, entrega R$ 0,00, confirmar desabilitado. TC-09 em pricing.test.ts.
 
 ### [ ] T-18 — Schema Zod e formulário de endereço
 - **Objetivo:** formulário com React Hook Form + Zod, labels e erros acessíveis.
