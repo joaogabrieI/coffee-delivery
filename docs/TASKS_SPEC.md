@@ -241,14 +241,15 @@
 - **Status:** Concluída
 - **Teste realizado:** order.test.tsx: createOrder copia linhas e congela totais; last-order salvo/lido e validado por orderSchema (total adulterado ou JSON quebrado → null); TC-26 (alerta, foco no CEP, erro de pagamento, nada salvo; vazio = desabilitado); pedido válido salva snapshot, zera carrinho/badge e navega para /success.
 
-### [ ] T-22 — Tela de sucesso (`OrderSuccess`) e estado vazio
+### [x] T-22 — Tela de sucesso (`OrderSuccess`) e estado vazio
 - **Objetivo:** exibir endereço, pagamento e valores do pedido concluído.
 - **Requisitos:** RF-12, RF-13, RN-06, RN-09
 - **Arquivos:** `src/components/OrderSuccess/`, `src/pages/Success.tsx`
 - **Pronto quando:** resumo correto mesmo com carrinho vazio e após refresh; sem pedido → estado vazio com link p/ Home.
 - **Teste:** TC-27, TC-28.
 - **Commit:** `feat: add order success page`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** success.test.tsx: TC-27 (endereço com complemento, bairro/cidade/UF/CEP, 'Cartão de crédito', itens e total R$ 33,20, badge zerado); sucesso correto após remontar com carrinho vazio; TC-28 (sem pedido e pedido corrompido → estado vazio com link para a Home).
 
 ---
 
