@@ -167,14 +167,15 @@
 - **Status:** Concluída
 - **Teste realizado:** quantityInput.test.tsx: − desabilitado no mínimo, + no máximo; no card, escolher 3 e adicionar anuncia 'Latte adicionado ao carrinho' e volta a quantidade para 1. TC-03/TC-04 cobertos no reducer.
 
-### [ ] T-15 — `CartBadge` no Header
+### [x] T-15 — `CartBadge` no Header
 - **Objetivo:** mostrar a soma de unidades com link para `/checkout`.
 - **Requisitos:** RF-04
 - **Arquivos:** `src/components/CartBadge/`, `src/components/Header/`
 - **Pronto quando:** contador = soma das quantidades; `aria-label` descreve o total; atualiza imediatamente.
 - **Teste:** TC-12, TC-21.
 - **Commit:** `feat: add cart badge`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** cartBadge.test.tsx (TC-21): 3 cliques de adicionar (2+1+1 unidades em 2 linhas) → badge '4' e link '4 itens no carrinho'; vazio → 'Carrinho vazio' e sem badge. TC-12 coberto em pricing.test.ts.
 
 ### [ ] T-16 — Persistência do carrinho (`localStorage`)
 - **Objetivo:** salvar e recuperar o carrinho com leitura defensiva.
