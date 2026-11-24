@@ -2,7 +2,7 @@
 
 > **Projeto Final 05 — Coffee Delivery (React + TypeScript + IA)**
 > Disciplina: Single Page Application (SPA)
-> Versão: 1.1 · Status: **implementado** (24/11/2026) — pendente apenas publicação (T-27) · Documento vivo.
+> Versão: 1.1 · Status: **implementado e publicado** (24/11/2026): https://coffee-delivery-delta-sage.vercel.app · Documento vivo.
 
 Documentos relacionados: [`TECH_SPEC.md`](./TECH_SPEC.md) · [`TASKS_SPEC.md`](./TASKS_SPEC.md) · [`../AGENTS.md`](../AGENTS.md)
 
@@ -201,7 +201,7 @@ Home (/) ──► Checkout (/checkout) ──► Confirmação (/success)
 - [x] Fluxo completo Home → Checkout → Sucesso funciona em desktop e celular, nos dois temas (E2E TC-30, capturas em `docs/screenshots/`).
 - [x] Refresh preserva carrinho e tema; `/success` sem pedido mostra estado vazio.
 - [x] Sem `any`, sem erros de TypeScript/ESLint; testes automatizados passando (131 Vitest + 23 Playwright).
-- [ ] Aplicação publicada (deploy) e repositório GitHub público — configuração pronta (`vercel.json`, `public/_redirects`), falta publicar (T-27).
+- [x] Aplicação publicada (https://coffee-delivery-delta-sage.vercel.app) e repositório GitHub público (https://github.com/joaogabrieI/coffee-delivery).
 - [x] SPECs atualizadas; ≥ 3 interações com IA registradas (`docs/AI_USAGE.md`); seção "Branding com IA" preenchida (§7.4 e README).
 - [ ] O aluno consegue explicar oralmente o fluxo do estado global e os principais trechos de código (roteiro em `docs/AI_USAGE.md`).
 

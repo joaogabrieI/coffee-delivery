@@ -22,9 +22,10 @@
 ## 🌐 Aplicação publicada
 
 > **Repositório:** https://github.com/joaogabrieI/coffee-delivery
-> **Link da aplicação:** _a preencher após o deploy (T-27)._
-> O projeto já está configurado para Vercel (`vercel.json`) e Netlify (`public/_redirects`), com
-> fallback de rotas para que o F5 em `/checkout` e `/success` não dê 404.
+> **Aplicação:** **https://coffee-delivery-delta-sage.vercel.app** (Vercel; cada push na `main` publica uma nova versão)
+> Fallback de rotas configurado (`vercel.json`; `public/_redirects` para Netlify): F5 em `/checkout` e
+> `/success` não dá 404. A versão publicada passou na mesma suíte E2E:
+> `PLAYWRIGHT_BASE_URL=https://coffee-delivery-delta-sage.vercel.app npm run test:e2e`.
 
 **Figma de referência:** [Coffee Delivery • Projeto Final React](https://www.figma.com/design/yGPNTA0Yczb183EikXGIiA/Coffee-Delivery-%E2%80%A2-Projeto-Final-React?node-id=2-1297)
 
@@ -182,6 +183,6 @@ Conventional Commits, com um commit por tarefa do [`TASKS_SPEC.md`](docs/TASKS_S
 
 ## 📌 Pendências
 
-- [ ] Publicar a aplicação e preencher o link no topo deste README (T-27).
+- [x] Aplicação publicada na Vercel (T-27).
 - [ ] Rodar o Lighthouse (TC-34) e anexar o resultado.
 - [ ] Conferir as telas com o Figma original.

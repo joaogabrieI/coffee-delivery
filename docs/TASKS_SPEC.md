@@ -295,14 +295,15 @@
 - **Status:** Concluída
 - **Teste realizado:** README com objetivos, stack, instalação, scripts, arquitetura, decisões, testes, 12 capturas (desktop/mobile, claro/escuro), Figma e Branding com IA; docs/AI_USAGE.md com 5 interações; PRD v1.1 (DoD, D-09..D-13, quadro de marca) e TECH_SPEC v1.1 (§3 estrutura real, §3.1 props reais, §8 Zod 4, §15 desvios e resultado dos testes). Pendente: seguir o README do zero em outra máquina.
 
-### [ ] T-27 — Deploy e verificação final
+### [x] T-27 — Deploy e verificação final
 - **Objetivo:** publicar e validar a aplicação.
 - **Requisitos:** entrega; RF-07 (fallback de rotas)
 - **Arquivos:** `vercel.json` / `public/_redirects` (conforme a plataforma)
 - **Pronto quando:** URL pública funciona; refresh em `/checkout` e `/success` não dá 404; fluxo completo OK em celular real ou emulado.
 - **Teste:** checklist de aceite geral (PRD §8.1).
 - **Commit:** `chore: configure deploy`
-- **Status:** Em andamento — configuração pronta (`vercel.json`, `public/_redirects`, `engines.node`); build de produção OK e F5 em rotas internas verificado no E2E contra `vite preview`. Repositório público criado e enviado: https://github.com/joaogabrieI/coffee-delivery (24/11/2026). Falta: importar na Vercel/Netlify e colar a URL no README.
+- **Status:** Concluída
+- **Teste realizado:** publicado na Vercel em https://coffee-delivery-delta-sage.vercel.app (repositório https://github.com/joaogabrieI/coffee-delivery, deploy automático a cada push na `main`). `PLAYWRIGHT_BASE_URL=https://coffee-delivery-delta-sage.vercel.app npm run test:e2e` → 23 passaram (fluxo completo em 1280 e 390 px, F5 em `/checkout` e `/success` sem 404, 12 auditorias axe). Manual na produção: CEP real 20040-020 → Praça Pio X / Centro / Rio de Janeiro / RJ, foco no número.
 
 ---
 

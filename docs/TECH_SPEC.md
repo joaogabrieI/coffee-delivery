@@ -519,4 +519,5 @@ Scripts no `package.json`: `dev`, `build`, `preview`, `lint`, `typecheck`, `form
 | Unitários + integração (TC-01..TC-29, contraste, rotas) | `npm run test:run` | **131 passaram** (18 arquivos) |
 | E2E + acessibilidade (TC-30..TC-33, axe ×12) | `npm run test:e2e` | **23 passaram**, 1 pulado (TC-31 teclado só no desktop) |
 | Lint / tipos | `npm run lint` · `npm run typecheck` | 0 erros, 0 avisos |
+| E2E contra a produção | `PLAYWRIGHT_BASE_URL=https://coffee-delivery-delta-sage.vercel.app npm run test:e2e` | **23 passaram**, 1 pulado |
 | TC-34 Lighthouse | Chrome DevTools | **Pendente**: rodar manualmente |
