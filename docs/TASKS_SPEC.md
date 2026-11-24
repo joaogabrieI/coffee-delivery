@@ -49,14 +49,15 @@
 - **Status:** Concluída
 - **Teste realizado:** npm run typecheck e npm run build sem erros (Vite 8, React 19, TypeScript 6 strict).
 
-### [ ] T-04 — Dependências, ESLint, Prettier e Vitest
+### [x] T-04 — Dependências, ESLint, Prettier e Vitest
 - **Objetivo:** instalar bibliotecas e ferramentas de qualidade/teste.
 - **Requisitos:** qualidade; base de RF-08, RF-14
 - **Arquivos:** `package.json`, `eslint.config.js`, `.prettierrc`, `vitest.config.ts` / `vite.config.ts`, `src/tests/setup.ts`
 - **Pronto quando:** scripts `lint`, `typecheck`, `test`, `test:run` funcionam; 1 teste de fumaça passa.
 - **Teste:** `npm run lint && npm run typecheck && npm run test:run`.
 - **Commit:** `chore: add tooling and test setup`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** npm run lint && npm run typecheck && npm run test:run — 1 teste de fumaça passou. (oxlint do template trocado por ESLint + Prettier, conforme TECH_SPEC.)
 
 ### [ ] T-05 — Estrutura de pastas, rotas e layout base
 - **Objetivo:** criar a árvore de diretórios e as 3 rotas com páginas vazias.
