@@ -1,3 +1,12 @@
+import { CoffeeCatalog } from '../components/CoffeeCatalog'
+import { Hero } from '../components/Hero'
+import { coffees } from '../data/coffees'
+
 export function Home() {
-  return <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+  return (
+    <>
+      <Hero />
+      <CoffeeCatalog coffees={coffees} />
+    </>
+  )
 }

@@ -127,14 +127,15 @@
 - **Status:** Concluída
 - **Teste realizado:** header.test.tsx: logo é link para / com nome acessível; botão de tema presente; 1º Tab foca o skip link. Manual: Header renderizado no navegador com Baloo 2 carregada.
 
-### [ ] T-11 — Catálogo: `CoffeeCard` e `CoffeeCatalog` (responsivos)
+### [x] T-11 — Catálogo: `CoffeeCard` e `CoffeeCatalog` (responsivos)
 - **Objetivo:** exibir os cafés com imagem, nome, descrição, preço e tags.
 - **Requisitos:** RF-01, RF-15
 - **Arquivos:** `src/components/{CoffeeCard,CoffeeCatalog}/`, `src/pages/Home.tsx`
 - **Pronto quando:** grid 1/2/3/4 colunas conforme breakpoint; sem imagem quebrada; `alt` presente.
 - **Teste:** TC-20 + manual em 320/390/768/1280 px.
 - **Commit:** `feat: add responsive coffee catalog`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** catalog.test.tsx (TC-20): 14 cards com nome, descrição, preço, tags e imagem com alt. Manual (scripts/screenshots.mjs): 320/390/768/1280 px — 1/1/2/4 colunas, sem rolagem horizontal, sem imagem quebrada.
 
 ### [ ] T-12 — `cartReducer` (puro) com testes
 - **Objetivo:** implementar `ADD_ITEM`, `INCREMENT`, `DECREMENT`, `REMOVE_ITEM`, `CLEAR_CART`, `HYDRATE` de forma imutável.
