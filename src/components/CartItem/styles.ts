@@ -44,6 +44,7 @@ export const RemoveButton = styled.button`
   transition: background-color 0.2s;
 
   svg {
+    flex-shrink: 0;
     color: ${({ theme }) => theme.colors.primary};
   }
 

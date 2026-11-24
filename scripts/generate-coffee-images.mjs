@@ -101,21 +101,43 @@ const coffees = {
   'cafe-com-leite': `${cupBase()}${liquid(C.latte)}${liquid('#D9B48C', 22)}${shine}`,
   latte: `${cupBase()}${liquid(C.latte)}${rosetta(C.milk)}`,
   capuccino: `${cupBase()}${liquid(C.crema)}${liquid(C.creamLight, 28)}${dots(C.cinnamon, [
-    [52, 52], [60, 48], [68, 54], [56, 62], [66, 64], [60, 70], [50, 66], [70, 60, 1.2], [48, 58, 1.2],
+    [52, 52],
+    [60, 48],
+    [68, 54],
+    [56, 62],
+    [66, 64],
+    [60, 70],
+    [50, 66],
+    [70, 60, 1.2],
+    [48, 58, 1.2],
   ])}`,
   macchiato: `${cupBase()}${liquid(C.espresso)}${liquid(C.crema, 26)}${liquid(C.milk, 12)}`,
   mocaccino: `${cupBase()}${liquid(C.chocolate)}${heart(C.milk)}`,
   'chocolate-quente': `${cupBase()}${liquid(C.chocolate)}${swirl('#7A4430', 4)}${dots('#3A1A0E', [
-    [46, 50, 2.2], [74, 52, 2.2], [52, 76, 2.2], [72, 70, 2.2],
+    [46, 50, 2.2],
+    [74, 52, 2.2],
+    [52, 76, 2.2],
+    [72, 70, 2.2],
   ])}`,
   cubano: `${cupBase({ glass: true })}${liquid('#5B331F', 38)}${liquid(C.creamLight, 22)}${mintLeaf(52, 52, -30)}${mintLeaf(68, 58, 40)}${mintLeaf(58, 70, 5)}`,
   havaiano: `${cupBase()}${liquid(C.latte)}${liquid(C.coconut, 18)}${dots('#FFFFFF', [
-    [44, 50, 2.4], [76, 56, 2.4], [48, 74, 2.4], [72, 74, 2.4], [60, 42, 2.4],
+    [44, 50, 2.4],
+    [76, 56, 2.4],
+    [48, 74, 2.4],
+    [72, 74, 2.4],
+    [60, 42, 2.4],
   ])}<path d="M78 34c-6 2-10 7-10 12" stroke="#4FA36B" stroke-width="3" fill="none" stroke-linecap="round"/>`,
   arabe: `${cupBase()}${liquid('#2E1A12')}${starAnise(60, 60)}${dots('#C9A26A', [
-    [44, 48, 1.6], [76, 50, 1.6], [70, 76, 1.6], [46, 72, 1.6],
+    [44, 48, 1.6],
+    [76, 50, 1.6],
+    [70, 76, 1.6],
+    [46, 72, 1.6],
   ])}`,
-  irlandes: `${cupBase({ glass: true })}${liquid('#3A2014', 38)}${whipped}${dots(C.cinnamon, [[56, 56, 1.4], [64, 62, 1.4], [60, 52, 1.4]])}`,
+  irlandes: `${cupBase({ glass: true })}${liquid('#3A2014', 38)}${whipped}${dots(C.cinnamon, [
+    [56, 56, 1.4],
+    [64, 62, 1.4],
+    [60, 52, 1.4],
+  ])}`,
 }
 
 for (const [name, body] of Object.entries(coffees)) {
@@ -145,7 +167,14 @@ const hero = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" widt
   </g>
   <g fill="#4A2A1B">
     ${[
-      [92, 120, -30], [110, 250, 20], [70, 190, 60], [380, 140, 35], [400, 250, -20], [360, 300, 70], [130, 320, -60], [420, 190, 10],
+      [92, 120, -30],
+      [110, 250, 20],
+      [70, 190, 60],
+      [380, 140, 35],
+      [400, 250, -20],
+      [360, 300, 70],
+      [130, 320, -60],
+      [420, 190, 10],
     ]
       .map(
         ([x, y, r]) =>

@@ -255,14 +255,15 @@
 
 ## Fase 5 — Refino, qualidade e entrega
 
-### [ ] T-23 — Responsividade e dark mode em todas as telas
+### [x] T-23 — Responsividade e dark mode em todas as telas
 - **Objetivo:** garantir fluxo completo nos 2 temas e em 320–1440 px.
 - **Requisitos:** RF-14, RF-15
 - **Arquivos:** componentes e páginas (ajustes de estilo)
 - **Pronto quando:** sem rolagem horizontal; endereço/resumo em coluna no mobile; alvos de toque ≥ 44 px; checkout e sucesso respeitam o tema.
 - **Teste:** TC-30, TC-32 (manual/Playwright em 320, 390, 768, 1280).
 - **Commit:** `style: polish responsive layout and dark mode`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** scripts/screenshots.mjs (Playwright + Chrome): Home, Checkout e Sucesso em 320/390/768/1280 px × claro/escuro = 24 capturas, todas sem rolagem horizontal (scrollWidth ≤ clientWidth). Endereço/resumo em coluna no celular; cards, formulário, carrinho e sucesso respeitam o tema. Corrigido: ícone da lixeira encolhendo em 320 px.
 
 ### [ ] T-24 — Acessibilidade (WCAG 2.2 AA)
 - **Objetivo:** revisar teclado, foco, rótulos, contraste e anúncios de erro.
