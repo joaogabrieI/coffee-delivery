@@ -83,14 +83,15 @@
 - **Status:** Concluída
 - **Teste realizado:** Logo e favicon visualizados no navegador em 16, 32 e 300 px, sobre fundo claro (#FAFAFA) e escuro (#16120F); nenhuma imagem quebrada.
 
-### [ ] T-07 — Tokens e temas claro/escuro (styled-components)
+### [x] T-07 — Tokens e temas claro/escuro (styled-components)
 - **Objetivo:** definir tokens semânticos, `lightTheme`/`darkTheme`, `GlobalStyle` e fontes.
 - **Requisitos:** RF-14, RF-15
 - **Arquivos:** `src/styles/{tokens,themes,GlobalStyle}.ts`, `src/styles/styled.d.ts`, `index.html`
 - **Pronto quando:** ambos os temas implementam a mesma interface; contraste AA verificado; fontes Baloo 2 + Roboto carregando.
 - **Teste:** checagem de contraste dos pares texto/fundo, botão e foco nos 2 temas.
 - **Commit:** `style: add design tokens and themes`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** contrast.test.ts: 18 pares texto/fundo, botão e foco verificados nos 2 temas (≥4,5:1 texto, ≥3:1 ícones/foco) + mesma interface nos 2 temas. Ajustes vs. Figma: textMuted #736B69, accentStrong #B06F0F, texto escuro sobre amarelo.
 
 ### [ ] T-08 — ThemeProvider, `useTheme` e `ThemeToggle`
 - **Objetivo:** alternar e persistir o tema (fallback `prefers-color-scheme`).

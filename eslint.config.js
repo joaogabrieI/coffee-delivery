@@ -24,6 +24,11 @@ export default tseslint.config(
       // AGENTS.md §5: proibido `any`
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/ban-ts-comment': 'error',
+      // Necessário para tipar o tema do styled-components (styled.d.ts).
+      '@typescript-eslint/no-empty-object-type': [
+        'error',
+        { allowInterfaces: 'with-single-extends' },
+      ],
     },
   },
   {
