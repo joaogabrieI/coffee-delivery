@@ -49,3 +49,16 @@ export const CartList = styled.ul`
   flex-direction: column;
   gap: ${({ theme }) => theme.space.lg};
 `
+
+export const FormAlert = styled.p`
+  &:not(:empty) {
+    margin-bottom: ${({ theme }) => theme.space.sm};
+    padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.md};
+    border-left: 4px solid ${({ theme }) => theme.colors.error};
+    border-radius: ${({ theme }) => theme.radius.sm};
+    background: ${({ theme }) => theme.colors.errorSoft};
+    color: ${({ theme }) => theme.colors.error};
+    font-size: ${({ theme }) => theme.fontSize.textS};
+    font-weight: 700;
+  }
+`

@@ -231,14 +231,15 @@
 - **Status:** Concluída
 - **Teste realizado:** payment.test.tsx (TC-15 na UI): grupo nomeado com 3 rádios e seleção única; setas do teclado trocam a opção; erro ligado ao grupo por aria-describedby + aria-invalid; nenhum campo de cartão. O teste revelou um aria-hidden que apagava os nomes dos rádios — corrigido.
 
-### [ ] T-21 — Confirmar pedido, snapshot e limpeza do carrinho
+### [x] T-21 — Confirmar pedido, snapshot e limpeza do carrinho
 - **Objetivo:** validar, criar `Order` (snapshot), salvar `last-order`, limpar carrinho e navegar.
 - **Requisitos:** RF-11, RF-12, RF-13, RN-06, RN-10
 - **Arquivos:** `src/pages/Checkout.tsx`, `src/utils/storage.ts`, `src/schemas/orderSchema.ts`
 - **Pronto quando:** confirmar bloqueado com carrinho vazio/formulário inválido; pedido válido vai a `/success` e zera o carrinho.
 - **Teste:** TC-26, TC-27.
 - **Commit:** `feat: confirm order with snapshot`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** order.test.tsx: createOrder copia linhas e congela totais; last-order salvo/lido e validado por orderSchema (total adulterado ou JSON quebrado → null); TC-26 (alerta, foco no CEP, erro de pagamento, nada salvo; vazio = desabilitado); pedido válido salva snapshot, zera carrinho/badge e navega para /success.
 
 ### [ ] T-22 — Tela de sucesso (`OrderSuccess`) e estado vazio
 - **Objetivo:** exibir endereço, pagamento e valores do pedido concluído.

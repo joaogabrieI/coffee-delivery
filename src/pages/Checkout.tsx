@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { CartItem } from '../components/CartItem'
 import { CartSummary } from '../components/CartSummary'
 import { DeliveryAddressForm } from '../components/DeliveryAddressForm'
@@ -8,17 +9,19 @@ import { PaymentMethodSelector } from '../components/PaymentMethodSelector'
 import { useCart } from '../hooks/useCart'
 import { useCep } from '../hooks/useCep'
 import { isUF } from '../types/address'
+import { createOrder, saveLastOrder } from '../utils/order'
 import {
   type CheckoutFormData,
   type CheckoutFormInput,
   checkoutSchema,
 } from '../schemas/checkoutSchema'
-import { CartList, CartPanel, CheckoutLayout, Column, Panel } from './Checkout.styles'
+import { CartList, CartPanel, CheckoutLayout, Column, FormAlert, Panel } from './Checkout.styles'
 
 const FORM_ID = 'checkout-form'
 
 export function Checkout() {
-  const { lines, totals, increment, decrement, removeItem } = useCart()
+  const { lines, totals, increment, decrement, removeItem, clearCart } = useCart()
+  const navigate = useNavigate()
   const isEmpty = lines.length === 0
 
   const {
@@ -27,7 +30,7 @@ export function Checkout() {
     handleSubmit,
     setValue,
     setFocus,
-    formState: { errors },
+    formState: { errors, isSubmitted, isSubmitting },
   } = useForm<CheckoutFormInput, unknown, CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
     mode: 'onBlur', // valida ao sair do campo; no submit valida tudo e foca o 1º erro
@@ -57,16 +60,34 @@ export function Checkout() {
     fillAddress(await retry())
   }
 
+  /**
+   * Só roda com o formulário VÁLIDO (o handleSubmit do RHF valida com Zod antes).
+   * Ordem: snapshot → salvar → limpar carrinho → navegar (RF-12, RF-13).
+   */
   function handleConfirm(data: CheckoutFormData) {
-    // Implementado na T-21 (snapshot do pedido).
-    void data
+    if (lines.length === 0) return // RN-10: guarda extra contra carrinho vazio
+    const order = createOrder(lines, data.address, data.paymentMethod)
+    saveLastOrder(order)
+    clearCart()
+    navigate('/success')
   }
+
+  const hasErrors = isSubmitted && Object.keys(errors).length > 0
 
   return (
     <CheckoutLayout>
       <Column>
         <h1>Complete seu pedido</h1>
-        <form id={FORM_ID} noValidate onSubmit={handleSubmit(handleConfirm)}>
+        <form
+          id={FORM_ID}
+          noValidate
+          aria-label="Dados de entrega e pagamento"
+          onSubmit={handleSubmit(handleConfirm)}
+        >
+          {/* Resumo anunciado no envio inválido; o RHF também foca o 1º campo com erro. */}
+          <FormAlert role="alert">
+            {hasErrors && 'Não foi possível confirmar: revise os campos destacados.'}
+          </FormAlert>
           <Panel>
             <DeliveryAddressForm
               register={register}
@@ -114,7 +135,7 @@ export function Checkout() {
           <CartSummary
             totals={totals}
             formId={FORM_ID}
-            disabled={isEmpty}
+            disabled={isEmpty || isSubmitting}
             disabledReason="Adicione pelo menos um café para confirmar o pedido."
           />
         </CartPanel>
