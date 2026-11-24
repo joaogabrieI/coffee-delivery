@@ -2,7 +2,7 @@
 
 > **Projeto Final 05 — Coffee Delivery (React + TypeScript + IA)**
 > Disciplina: Single Page Application (SPA)
-> Versão: 1.0 · Status: rascunho para validação · Documento vivo: atualizar durante a implementação.
+> Versão: 1.1 · Status: **implementado** (24/11/2026) — pendente apenas publicação (T-27) · Documento vivo.
 
 Documentos relacionados: [`TECH_SPEC.md`](./TECH_SPEC.md) · [`TASKS_SPEC.md`](./TASKS_SPEC.md) · [`../AGENTS.md`](../AGENTS.md)
 
@@ -184,8 +184,8 @@ Home (/) ──► Checkout (/checkout) ──► Confirmação (/success)
 |---|---|
 | Nome | **Coffee Delivery** (mantido) |
 | Conceito | "O café vai até você": a fumaça que sai da xícara vira um **pino de localização** com um grão de café dentro; traços de velocidade à esquerda indicam entrega rápida. Formas simples e arredondadas, legíveis em tamanho pequeno. |
-| Ferramenta de IA / prompt | **Claude Code (modelo Claude Opus 5.5, Anthropic)**, gerando a logo como **código SVG vetorial**. Prompt: *"Crie uma logo original em SVG para a cafeteria Coffee Delivery: uma xícara roxa (#8047F8) cuja fumaça forma um pino de localização amarelo (#DBAC2C) com um grão de café dentro, e traços de velocidade à esquerda. Formas geométricas simples, sem texto no ícone, legível em 16–32 px. Gere também a versão com wordmark 'Coffee / Delivery' em Baloo 2 para fundo claro e escuro."* Detalhes e alternativas descartadas em `docs/AI_USAGE.md`. |
-| Paleta (claro / escuro) | Claro: roxo `#8047F8` / `#4B2995`, amarelo `#DBAC2C` / `#C47F17`, fundo `#FAFAFA`. Escuro: roxo `#A98BFF`, amarelo `#E7BE4F`, fundo `#16120F`. Tokens completos em `src/styles/themes.ts`. |
+| Ferramenta de IA / prompt | **Claude Code (modelo Claude Opus 5.5, Anthropic)**, gerando a logo como **código SVG vetorial**. Prompt: *"Crie uma logo original em SVG para a cafeteria Coffee Delivery: uma xícara roxa (#8047F8) cuja fumaça forma um pino de localização amarelo (#DBAC2C) com um grão de café dentro, e traços de velocidade à esquerda. Formas geométricas simples, sem texto no ícone, legível em 16–32 px. Gere também a versão com wordmark 'Coffee / Delivery' em Baloo 2 para fundo claro e escuro."* Processo, revisão e ajustes em `docs/AI_USAGE.md` (interação 3). |
+| Paleta (claro / escuro) | Claro: roxo `#8047F8` / `#4B2995`, amarelo `#DBAC2C` / `#C47F17`, fundo `#FAFAFA`. Escuro: roxo `#A98BFF`, amarelo `#E7BE4F`, fundo `#16120F`. Tokens completos em `src/styles/themes.ts`. Ajustes de contraste em relação ao Figma: `textMuted` #736B69 (era #8D8686), amarelo-escuro #B06F0F (era #C47F17) e texto escuro sobre botões amarelos. |
 | Tipografia | Baloo 2 (títulos, wordmark) + Roboto (textos) |
 | Arquivos | `src/assets/logo-light.svg`, `src/assets/logo-dark.svg`, `src/assets/logo-icon.svg`, `public/favicon.svg`; no Header a logo é o componente `Logo` (SVG inline que usa as cores do tema). |
 | Legibilidade | Conferida em 16 px e 32 px sobre fundo claro e escuro (T-06). O favicon usa só o ícone, sem texto. |
@@ -196,14 +196,14 @@ Home (/) ──► Checkout (/checkout) ──► Confirmação (/success)
 ## 8. Critérios de aceite gerais e decisões de produto
 
 ### 8.1 Critérios de aceite gerais (Definition of Done do produto)
-- [ ] RF-01 a RF-16 atendidos conforme os critérios da seção 4.
-- [ ] RN-01 a RN-10 respeitadas e testadas onde há lógica (cálculo, reducer, validação, persistência).
-- [ ] Fluxo completo Home → Checkout → Sucesso funciona em desktop e celular, nos dois temas.
-- [ ] Refresh preserva carrinho e tema; `/success` sem pedido mostra estado vazio.
-- [ ] Sem `any`, sem erros de TypeScript/ESLint; testes automatizados passando.
-- [ ] Aplicação publicada (deploy), repositório GitHub com histórico de commits semânticos.
-- [ ] SPECs atualizadas; ≥ 3 interações com IA registradas (`docs/AI_USAGE.md`); seção "Branding com IA" preenchida.
-- [ ] O aluno consegue explicar oralmente o fluxo do estado global e os principais trechos de código.
+- [x] RF-01 a RF-16 atendidos conforme os critérios da seção 4 (rastreabilidade na TECH_SPEC §14).
+- [x] RN-01 a RN-10 respeitadas e testadas onde há lógica (cálculo, reducer, validação, persistência).
+- [x] Fluxo completo Home → Checkout → Sucesso funciona em desktop e celular, nos dois temas (E2E TC-30, capturas em `docs/screenshots/`).
+- [x] Refresh preserva carrinho e tema; `/success` sem pedido mostra estado vazio.
+- [x] Sem `any`, sem erros de TypeScript/ESLint; testes automatizados passando (131 Vitest + 23 Playwright).
+- [ ] Aplicação publicada (deploy) e repositório GitHub público — configuração pronta (`vercel.json`, `public/_redirects`), falta publicar (T-27).
+- [x] SPECs atualizadas; ≥ 3 interações com IA registradas (`docs/AI_USAGE.md`); seção "Branding com IA" preenchida (§7.4 e README).
+- [ ] O aluno consegue explicar oralmente o fluxo do estado global e os principais trechos de código (roteiro em `docs/AI_USAGE.md`).
 
 ### 8.2 Decisões de produto (registro)
 | # | Decisão | Motivo |
@@ -215,7 +215,12 @@ Home (/) ──► Checkout (/checkout) ──► Confirmação (/success)
 | D-05 | API de CEP: **ViaCEP** | Pública, gratuita, sem chave, CORS liberado |
 | D-06 | Pedido concluído em `last-order` (snapshot) | Independência do carrinho (RN-06, RF-13) |
 | D-07 | Estilização com **styled-components** | Alinhado ao desafio de origem; ver TECH_SPEC |
-| D-08 | Tema padrão = preferência do sistema | Respeita o usuário na 1ª visita (RF-14) |
+| D-08 | Tema padrão = preferência do sistema | Respeita o usuário na 1ª visita (RF-14); só é gravado quando o usuário escolhe |
+| D-09 | Rótulos visíveis nos campos (Figma usa só placeholder) | Placeholder some ao digitar; WCAG 3.3.2 / PRD §6.1 |
+| D-10 | Cores de texto ajustadas onde o Figma não atinge AA | Contraste verificado em teste automatizado (`contrast.test.ts`) |
+| D-11 | Confirmação também lista itens e totais do pedido | RF-10: valores consistentes entre Checkout e Sucesso |
+| D-12 | Preço único de R$ 9,90 para todos os cafés | Igual ao protótipo do Figma |
+| D-13 | Carrinho sincronizado entre abas (evento `storage` → `HYDRATE`) | Evita carrinhos diferentes em duas abas abertas |
 
 ---
 

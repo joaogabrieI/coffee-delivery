@@ -2,7 +2,7 @@
  * Gera capturas de tela das páginas em várias larguras e nos 2 temas.
  * Requer o servidor rodando (npm run dev) e o Google Chrome instalado.
  *
- * Uso: node scripts/screenshots.mjs [baseUrl] [saída] [larguras] [rotas] [temas]
+ * Uso: node scripts/screenshots.mjs [baseUrl] [saída] [larguras] [rotas] [temas] [full|viewport]
  *  ex.: node scripts/screenshots.mjs http://localhost:5173 docs/screenshots 390,1280 /,/checkout light,dark
  */
 import { mkdirSync } from 'node:fs'
@@ -14,6 +14,7 @@ const [
   widthsArg = '390,1280',
   routesArg = '/',
   themesArg = 'light',
+  mode = 'full',
 ] = process.argv.slice(2)
 
 // Dados de exemplo para que Checkout e Sucesso apareçam preenchidos.
@@ -53,7 +54,10 @@ const browser = await chromium.launch({ channel: 'chrome' })
 
 for (const theme of themesArg.split(',')) {
   for (const width of widthsArg.split(',').map(Number)) {
-    const page = await browser.newPage({ viewport: { width, height: 900 }, colorScheme: theme })
+    const page = await browser.newPage({
+      viewport: { width, height: width < 768 ? 844 : 900 },
+      colorScheme: theme,
+    })
     await page.addInitScript(
       ([cart, order, mode]) => {
         localStorage.setItem('coffee-delivery:cart:v1', JSON.stringify(cart))
@@ -77,7 +81,7 @@ for (const theme of themesArg.split(',')) {
         () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
       )
       const name = `${route === '/' ? 'home' : route.slice(1)}-${width}-${theme}.png`
-      await page.screenshot({ path: `${outDir}/${name}`, fullPage: true })
+      await page.screenshot({ path: `${outDir}/${name}`, fullPage: mode === 'full' })
       console.log(name, overflow ? '⚠ rolagem horizontal' : 'ok')
     }
     await page.close()

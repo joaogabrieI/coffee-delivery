@@ -1,7 +1,7 @@
 # TECH_SPEC — Technical Specification
 
 > **Projeto Final 05 — Coffee Delivery (React + TypeScript + IA)**
-> Versão: 1.0 · Status: rascunho para validação · Documento vivo.
+> Versão: 1.1 · Status: **implementada** (24/11/2026) · Documento vivo. Desvios em relação à v1.0 estão na §15.
 > Requisitos de origem: [`PRD_SPEC.md`](./PRD_SPEC.md) (IDs **RF-xx** / **RN-xx**).
 
 ---
@@ -64,50 +64,57 @@ Princípio: **separar dados, tipos, regras, estado e UI**. Nenhuma regra de neg�
 
 ## 3. Estrutura de diretórios e componentes
 
+Estrutura **implementada** (v1.1):
+
 ```
 coffee-delivery/
-├── public/                 # favicon, imagens estáticas
+├── public/                  # favicon.svg, hero.svg, delivery.svg, coffees/*.svg, _redirects
+├── scripts/                 # generate-coffee-images.mjs, screenshots.mjs
+├── e2e/                     # Playwright: flow.spec.ts, a11y.spec.ts, fixtures.ts
 ├── src/
-│   ├── assets/             # logo (claro/escuro), imagens de cafés
+│   ├── assets/              # logo-light.svg, logo-dark.svg, logo-icon.svg
 │   ├── components/
-│   │   ├── Header/  ThemeToggle/  CartBadge/
-│   │   ├── CoffeeCard/  CoffeeCatalog/  QuantityInput/
+│   │   ├── Header/  Logo/  ThemeToggle/  CartBadge/  PageLayout/
+│   │   ├── Hero/  CoffeeCatalog/  CoffeeCard/  QuantityInput/
 │   │   ├── CartItem/  CartSummary/  EmptyCart/
-│   │   ├── DeliveryAddressForm/  PaymentMethodSelector/
-│   │   ├── OrderSuccess/  PageLayout/
-│   ├── pages/              # Home.tsx, Checkout.tsx, Success.tsx
-│   ├── contexts/           # CartContext.tsx, ThemeContext.tsx
-│   ├── reducers/           # cartReducer.ts
-│   ├── hooks/              # useCart.ts, useTheme.ts, useLocalStorage.ts, useCep.ts
-│   ├── data/               # coffees.ts
-│   ├── types/              # coffee.ts, cart.ts, order.ts, address.ts, theme.ts
-│   ├── schemas/            # checkoutSchema.ts
-│   ├── utils/              # pricing.ts, format.ts, storage.ts, cep.ts
-│   ├── styles/             # tokens.ts, themes.ts, GlobalStyle.ts, styled.d.ts
-│   ├── tests/              # *.test.ts(x)
-│   ├── App.tsx
-│   └── main.tsx
-├── docs/                   # PRD_SPEC.md, TECH_SPEC.md, TASKS_SPEC.md, AI_USAGE.md
+│   │   ├── DeliveryAddressForm/ (index, Field, styles)  PaymentMethodSelector/
+│   │   └── OrderSuccess/
+│   ├── pages/               # Home.tsx, Checkout.tsx (+ .styles.ts), Success.tsx (+ .styles.ts), NotFound.tsx
+│   ├── contexts/            # context.ts (objetos de contexto), CartContext.tsx, ThemeContext.tsx
+│   ├── reducers/            # cartReducer.ts
+│   ├── hooks/               # useCart.ts, useTheme.ts, useLocalStorage.ts, useCep.ts
+│   ├── data/                # coffees.ts, paymentMethods.ts
+│   ├── types/               # coffee.ts, cart.ts, address.ts, order.ts, theme.ts
+│   ├── schemas/             # checkoutSchema.ts, orderSchema.ts
+│   ├── utils/               # pricing.ts, format.ts, storage.ts, cep.ts, order.ts
+│   ├── styles/              # tokens.ts, themes.ts, GlobalStyle.ts, styled.d.ts
+│   ├── tests/               # *.test.ts(x), setup.ts, renderWithProviders.tsx, flowHelpers.ts
+│   ├── App.tsx              # só o mapa de rotas
+│   └── main.tsx             # ThemeProvider → CartProvider → BrowserRouter → App
+├── docs/                    # PRD_SPEC, TECH_SPEC, TASKS_SPEC, AI_USAGE, screenshots/
 ├── AGENTS.md
-└── README.md
+├── README.md
+└── vercel.json
 ```
 
 ### 3.1 Componentes (responsabilidade e props principais)
 | Componente | Responsabilidade | Props principais | Req. |
 |---|---|---|---|
-| `PageLayout` | Header + `<main>` + área de conteúdo | `children` | RF-07 |
-| `Header` | Logo, link Home, `ThemeToggle`, `CartBadge` | — | RF-04/14/16 |
-| `ThemeToggle` | Alterna tema (acessível) | — (usa `useTheme`) | RF-14 |
-| `CartBadge` | Link p/ `/checkout` + contador de unidades | — (usa `useCart`) | RF-04 |
-| `CoffeeCatalog` | Lista/grid de cafés | `coffees: Coffee[]` | RF-01 |
-| `CoffeeCard` | Imagem, nome, descrição, preço, tags, quantidade, adicionar | `coffee: Coffee` | RF-01/02/03 |
-| `QuantityInput` | −/+ com limites 1..99 | `value`, `onChange`, `min`, `max`, `label` | RF-02, RN-01 |
-| `CartItem` | Linha do carrinho: qtd, subtotal, remover | `item: CartLine` | RF-05 |
-| `CartSummary` | Subtotal, entrega, total, botão confirmar | `totals`, `disabled` | RF-10/11 |
+| `PageLayout` | Skip link + Header + `<main>`; rola ao topo e foca o `<h1>` a cada rota | — (rota-pai com `<Outlet>`) | RF-07 |
+| `Header` | Logo (link Home), `ThemeToggle`, `CartBadge` | — | RF-04/14/16 |
+| `Logo` | Logo SVG inline com cores do tema | — | RF-16 |
+| `ThemeToggle` | Alterna tema (`aria-pressed`) | — (usa `useTheme`) | RF-14 |
+| `CartBadge` | Link p/ `/checkout` + contador de unidades + região `aria-live` | — (usa `useCart`) | RF-04 |
+| `Hero` | Título, benefícios e ilustração da Home | — | RF-01 |
+| `CoffeeCatalog` | Grid 1/2/3/4 colunas | `coffees: Coffee[]` | RF-01 |
+| `CoffeeCard` | Imagem, tags, nome, descrição, preço, quantidade local, adicionar | `coffee: Coffee` (usa `useCart().addItem`) | RF-01/02/03 |
+| `QuantityInput` | −/+ controlado com limites | `value`, `onChange`, `min`, `max`, `label`, `size?` | RF-02, RN-01 |
+| `CartItem` | Linha do carrinho: qtd, total da linha, remover | `item: CartLine`, `onIncrement`, `onDecrement`, `onRemove` | RF-05 |
+| `CartSummary` | Subtotal, entrega, total, botão confirmar (`form=`) | `totals`, `disabled`, `formId`, `disabledReason?` | RF-10/11 |
 | `EmptyCart` | Estado vazio + link Home | — | RN-09 |
-| `DeliveryAddressForm` | Campos de endereço + feedback do CEP | `register`, `errors`, `cepStatus` | RF-08 |
-| `PaymentMethodSelector` | Rádios crédito/débito/dinheiro | `value`, `onChange`, `error` | RF-09 |
-| `OrderSuccess` | Resumo do pedido concluído | `order: Order` | RF-12 |
+| `DeliveryAddressForm` | Campos de endereço + feedback do CEP | `register`, `errors`, `cepStatus`, `onCepChange`, `onRetryCep` | RF-08 |
+| `PaymentMethodSelector` | Rádios crédito/débito/dinheiro | `value`, `onChange`, `error?`, `inputRef?` | RF-09 |
+| `OrderSuccess` | Resumo do pedido concluído (endereço, previsão, pagamento, itens, totais) | `order: Order` | RF-12 |
 
 ---
 
@@ -274,19 +281,20 @@ export const addressSchema = z.object({
   complement: z.string().trim().max(60).optional(),
   neighborhood: z.string().trim().min(1, 'Informe o bairro'),
   city: z.string().trim().min(1, 'Informe a cidade'),
-  uf: z.enum(UFS, { errorMap: () => ({ message: 'Selecione a UF' }) }),
+  uf: z.enum(UFS, { error: 'Selecione a UF' }), // Zod 4: `error` substitui `errorMap`
 });
 
 export const checkoutSchema = z.object({
   address: addressSchema,
   paymentMethod: z.enum(['credit', 'debit', 'cash'], {
-    errorMap: () => ({ message: 'Selecione a forma de pagamento' }),
+    error: 'Selecione a forma de pagamento',
   }),
 });
 
-export type CheckoutFormData = z.infer<typeof checkoutSchema>;
+export type CheckoutFormInput = z.input<typeof checkoutSchema>;  // valores do formulário
+export type CheckoutFormData = z.output<typeof checkoutSchema>; // dados validados
 ```
-- Integração: `useForm<CheckoutFormData>({ resolver: zodResolver(checkoutSchema), mode: 'onBlur' })`.
+- Integração: `useForm<CheckoutFormInput, unknown, CheckoutFormData>({ resolver: zodResolver(checkoutSchema), mode: 'onBlur' })`.
 - Máscara de CEP (`00000-000`) na exibição; valor normalizado para 8 dígitos no envio.
 - Erros: `aria-invalid`, mensagem ligada por `aria-describedby`; no submit inválido, foco no primeiro erro.
 - O mesmo schema valida a leitura do `last-order` (via `orderSchema`) para recusar dados corrompidos.
@@ -428,7 +436,7 @@ npm run test:e2e       # playwright (opcional)
 npm run build
 npm run preview
 ```
-Scripts esperados no `package.json`: `dev`, `build`, `preview`, `lint`, `typecheck`, `test`, `test:run`, `test:e2e`.
+Scripts no `package.json`: `dev`, `build`, `preview`, `lint`, `typecheck`, `format`, `format:check`, `test`, `test:run`, `test:e2e`, `generate:images`. O E2E sobe sozinho `build + preview` na porta 4173 e usa o Google Chrome instalado (`channel: 'chrome'`).
 
 **Deploy:** Vercel, Netlify ou GitHub Pages. Com rotas do React Router, configurar *fallback* para `index.html` (ex.: `vercel.json` com rewrite `/(.*) → /index.html`, ou `_redirects` no Netlify).
 
@@ -483,3 +491,32 @@ Scripts esperados no `package.json`: `dev`, `build`, `preview`, `lint`, `typeche
 | RN-08 | catálogo local tipado + ViaCEP | TC-20 |
 | RN-09 | `EmptyCart`, estado vazio em `/success` | TC-28 |
 | RN-10 | validação + guarda no submit, `HYDRATE` | TC-17, TC-26 |
+
+---
+
+## 15. Registro de implementação (v1.1): desvios e decisões
+
+| # | Onde | Previsto (v1.0) | Implementado | Motivo |
+|---|---|---|---|---|
+| I-01 | Stack | "major do Vite compatível" | Vite 8, React 19, TypeScript **6.0**, Zod **4**, React Router 7, Vitest 5, ESLint 10 | O template trouxe TS 7, que o `typescript-eslint` ainda não suporta (< 6.1). **Confirmar Node ≥ 20.19 nos computadores da faculdade.** |
+| I-02 | Dependências extras | — | `@phosphor-icons/react` (ícones do desafio original), `@axe-core/playwright` (auditoria WCAG nos E2E) | Ícones acessíveis em SVG; prova automatizada de acessibilidade |
+| I-03 | Zod | `errorMap` | `error` | API do Zod 4 |
+| I-04 | `useCep` | `useCep(cep)` com efeito | `useCep()` → `{ status, lookup, retry }` disparado no `onChange` do CEP | Evita `setState` em efeito (regra do ESLint React Hooks 7); fluxo linear; ganhou timeout de 8 s e "Tentar novamente" |
+| I-05 | Persistência do carrinho | `useLocalStorage` | Inicializador do `useReducer` lê o storage e aplica `HYDRATE`; `useEffect` grava; evento `storage` sincroniza abas | Reaproveita a sanitização do reducer. `useLocalStorage` é usado pelo tema |
+| I-06 | Tema | efeito grava sempre | Só grava quando o usuário escolhe; acompanha mudança do sistema enquanto não houver escolha | D-08 continua valendo após a 1ª visita |
+| I-07 | Contextos | — | Objetos `createContext` em `contexts/context.ts`; Providers em `.tsx` | Fast Refresh do Vite exige arquivos de componente só com componentes |
+| I-08 | Tokens | `bg, surface, text…` | Mesma ideia, com mais papéis: `inputBg`, `hover`, `title`, `subtitle`, `primaryStrong/Soft/Ink/Text`, `accentStrong/Soft/Ink/Text`, `errorSoft` | Necessários para reproduzir o Figma com contraste AA nos 2 temas |
+| I-09 | `CartLine` | `CartItem & { coffee; lineTotalCents }` | + `unitPriceCents` | `subtotalCents()` recebe `{ unitPriceCents, quantity }` |
+| I-10 | `HYDRATE` | `payload: { items: CartItem[] }` | `payload: { items: unknown }` | Dado vindo do storage é desconhecido até ser sanitizado |
+| I-11 | Pagamento | — | `Controller` do RHF + rádios nativos estilizados | Teclado (setas) e leitores de tela funcionam sem ARIA extra |
+| I-12 | Formulário | placeholders do Figma | Rótulos visíveis + placeholder só no CEP | PRD D-09 |
+| I-13 | Fora do PRD | — | Filtro por categoria **removido** | `AGENTS.md` §6: não adicionar funcionalidades fora do PRD |
+
+### 15.1 Resultado dos testes (24/11/2026)
+
+| Suite | Comando | Resultado |
+|---|---|---|
+| Unitários + integração (TC-01..TC-29, contraste, rotas) | `npm run test:run` | **131 passaram** (18 arquivos) |
+| E2E + acessibilidade (TC-30..TC-33, axe ×12) | `npm run test:e2e` | **23 passaram**, 1 pulado (TC-31 teclado só no desktop) |
+| Lint / tipos | `npm run lint` · `npm run typecheck` | 0 erros, 0 avisos |
+| TC-34 Lighthouse | Chrome DevTools | **Pendente**: rodar manualmente |

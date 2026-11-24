@@ -285,14 +285,15 @@
 - **Status:** Concluída
 - **Teste realizado:** npm run test:run → 131 testes (Vitest, TC-01..TC-29). npm run test:e2e → 23 passaram + 1 pulado (Playwright, Chrome, 1280 e 390 px): TC-30 fluxo completo sem reload + F5 no sucesso, TC-31 compra só com teclado (desktop), TC-32 sem rolagem em 320 px, TC-33 logo/favicon/imagens, tema em todas as telas, F5 em /checkout, 12 auditorias axe.
 
-### [ ] T-26 — README, AI_USAGE e atualização das SPECs
+### [x] T-26 — README, AI_USAGE e atualização das SPECs
 - **Objetivo:** documentar execução, branding, decisões e uso da IA.
 - **Requisitos:** entrega
 - **Arquivos:** `README.md`, `docs/AI_USAGE.md`, `docs/*_SPEC.md`
 - **Pronto quando:** README com instruções e link do deploy; ≥ 3 interações com IA registradas (prompt, objetivo, resposta resumida, decisão, evidência); SPECs refletem o que foi feito.
 - **Teste:** seguir o README do zero em outra máquina/pasta.
 - **Commit:** `docs: update README, AI usage and specs`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** README com objetivos, stack, instalação, scripts, arquitetura, decisões, testes, 12 capturas (desktop/mobile, claro/escuro), Figma e Branding com IA; docs/AI_USAGE.md com 5 interações; PRD v1.1 (DoD, D-09..D-13, quadro de marca) e TECH_SPEC v1.1 (§3 estrutura real, §3.1 props reais, §8 Zod 4, §15 desvios e resultado dos testes). Pendente: seguir o README do zero em outra máquina.
 
 ### [ ] T-27 — Deploy e verificação final
 - **Objetivo:** publicar e validar a aplicação.
