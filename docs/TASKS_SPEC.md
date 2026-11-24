@@ -302,7 +302,7 @@
 - **Pronto quando:** URL pública funciona; refresh em `/checkout` e `/success` não dá 404; fluxo completo OK em celular real ou emulado.
 - **Teste:** checklist de aceite geral (PRD §8.1).
 - **Commit:** `chore: configure deploy`
-- **Status:** A fazer
+- **Status:** Em andamento — configuração pronta (`vercel.json`, `public/_redirects`, `engines.node`); build de produção OK e F5 em rotas internas verificado no E2E contra `vite preview`. Falta: criar o repositório público no GitHub, importar na Vercel/Netlify e colar a URL no README.
 
 ---
 
