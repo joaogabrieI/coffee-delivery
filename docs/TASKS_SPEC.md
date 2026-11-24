@@ -39,14 +39,15 @@
 
 ## Fase 1 — Configuração
 
-### [ ] T-03 — Criar projeto Vite + React + TypeScript e repositório
+### [x] T-03 — Criar projeto Vite + React + TypeScript e repositório
 - **Objetivo:** projeto rodando com Git/GitHub configurado.
 - **Requisitos:** RF-07 (base), qualidade
 - **Arquivos:** `package.json`, `tsconfig.json` (`strict`), `vite.config.ts`, `.gitignore`, `README.md`
 - **Pronto quando:** `npm run dev` abre a página; repositório no GitHub com 1º commit.
 - **Teste:** `npm run dev`, `npm run build`, `npm run typecheck` sem erros.
 - **Commit:** `chore: scaffold vite react typescript` *(usar `docs:`/`feat:` se preferir manter só os prefixos exigidos)*
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** npm run typecheck e npm run build sem erros (Vite 8, React 19, TypeScript 6 strict).
 
 ### [ ] T-04 — Dependências, ESLint, Prettier e Vitest
 - **Objetivo:** instalar bibliotecas e ferramentas de qualidade/teste.
