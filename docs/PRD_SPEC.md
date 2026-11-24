@@ -179,16 +179,17 @@ Home (/) ──► Checkout (/checkout) ──► Confirmação (/success)
 - Persistir a escolha em `localStorage`; sem escolha salva, usar `prefers-color-scheme`.
 - Cards, formulário, carrinho e página de sucesso respeitam o tema — não apenas o fundo.
 
-### 7.4 Quadro de marca (preencher durante a tarefa de branding)
+### 7.4 Quadro de marca (preenchido na tarefa T-06)
 | Item | Definição |
 |---|---|
-| Nome | _a definir_ |
-| Conceito | _a definir_ |
-| Ferramenta de IA / prompt | _a registrar_ |
-| Paleta (claro / escuro) | _a definir (tokens)_ |
-| Tipografia | Baloo 2 + Roboto (ou alternativa justificada) |
-| Arquivos | `src/assets/logo-light.*`, `src/assets/logo-dark.*`, `public/favicon.*` |
-| Direitos de uso | _verificar termos da ferramenta_ |
+| Nome | **Coffee Delivery** (mantido) |
+| Conceito | "O café vai até você": a fumaça que sai da xícara vira um **pino de localização** com um grão de café dentro; traços de velocidade à esquerda indicam entrega rápida. Formas simples e arredondadas, legíveis em tamanho pequeno. |
+| Ferramenta de IA / prompt | **Claude Code (modelo Claude Opus 5.5, Anthropic)**, gerando a logo como **código SVG vetorial**. Prompt: *"Crie uma logo original em SVG para a cafeteria Coffee Delivery: uma xícara roxa (#8047F8) cuja fumaça forma um pino de localização amarelo (#DBAC2C) com um grão de café dentro, e traços de velocidade à esquerda. Formas geométricas simples, sem texto no ícone, legível em 16–32 px. Gere também a versão com wordmark 'Coffee / Delivery' em Baloo 2 para fundo claro e escuro."* Detalhes e alternativas descartadas em `docs/AI_USAGE.md`. |
+| Paleta (claro / escuro) | Claro: roxo `#8047F8` / `#4B2995`, amarelo `#DBAC2C` / `#C47F17`, fundo `#FAFAFA`. Escuro: roxo `#A98BFF`, amarelo `#E7BE4F`, fundo `#16120F`. Tokens completos em `src/styles/themes.ts`. |
+| Tipografia | Baloo 2 (títulos, wordmark) + Roboto (textos) |
+| Arquivos | `src/assets/logo-light.svg`, `src/assets/logo-dark.svg`, `src/assets/logo-icon.svg`, `public/favicon.svg`; no Header a logo é o componente `Logo` (SVG inline que usa as cores do tema). |
+| Legibilidade | Conferida em 16 px e 32 px sobre fundo claro e escuro (T-06). O favicon usa só o ícone, sem texto. |
+| Direitos de uso | Os termos da Anthropic atribuem ao usuário os direitos sobre o conteúdo gerado (conferir a versão vigente dos termos). O desenho usa só formas geométricas e não copia marcas de terceiros nem o logotipo do protótipo original. |
 
 ---
 

@@ -73,14 +73,15 @@
 
 ## Fase 2 — Identidade e tema
 
-### [ ] T-06 — Branding com IA (logo, paleta, tipografia, favicon)
+### [x] T-06 — Branding com IA (logo, paleta, tipografia, favicon)
 - **Objetivo:** criar logo original com IA e definir a identidade.
 - **Requisitos:** RF-16
 - **Arquivos:** `src/assets/logo-*.{svg,png}`, `public/favicon.*`, `docs/PRD_SPEC.md` §7.4 ou `README.md` (seção "Branding com IA")
 - **Pronto quando:** logo claro/escuro salva; conceito, prompt, ferramenta e motivo registrados; legível em 32 px; direitos de uso verificados.
 - **Teste:** visualizar em 32 px e nos dois fundos; sem imagem quebrada.
 - **Commit:** `feat: add AI-generated brand assets`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** Logo e favicon visualizados no navegador em 16, 32 e 300 px, sobre fundo claro (#FAFAFA) e escuro (#16120F); nenhuma imagem quebrada.
 
 ### [ ] T-07 — Tokens e temas claro/escuro (styled-components)
 - **Objetivo:** definir tokens semânticos, `lightTheme`/`darkTheme`, `GlobalStyle` e fontes.
