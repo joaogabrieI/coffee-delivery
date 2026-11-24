@@ -201,14 +201,15 @@
 - **Status:** Concluída
 - **Teste realizado:** checkoutCart.test.tsx (TC-22): +1 Latte muda total de R$ 33,20 para R$ 43,10 e badge para 4; − desabilitado em 1; remover tira a linha e recalcula. Vazio: EmptyCart, entrega R$ 0,00, confirmar desabilitado. TC-09 em pricing.test.ts.
 
-### [ ] T-18 — Schema Zod e formulário de endereço
+### [x] T-18 — Schema Zod e formulário de endereço
 - **Objetivo:** formulário com React Hook Form + Zod, labels e erros acessíveis.
 - **Requisitos:** RF-08, RF-11, RN-07
 - **Arquivos:** `src/schemas/checkoutSchema.ts`, `src/components/DeliveryAddressForm/`
 - **Pronto quando:** validações de CEP, número, bairro, cidade e UF; complemento opcional; erros ligados por `aria-describedby`.
 - **Teste:** TC-14.
 - **Commit:** `feat: add address form with zod validation` + `test: cover checkout schema`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** checkoutSchema.test.ts (TC-14, TC-15): CEP inválido (5 casos), UF inválida/vazia, obrigatórios vazios, complemento opcional/limite, pagamento ausente/inválido/3 válidos, máscara. addressForm.test.tsx: labels, máscara, aria-invalid + aria-describedby ao sair do campo, fieldset com nome. Manual: captura em 1280 px.
 
 ### [ ] T-19 — Integração com ViaCEP (`useCep`)
 - **Objetivo:** preencher rua, bairro, cidade e UF a partir do CEP.

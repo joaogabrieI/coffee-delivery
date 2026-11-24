@@ -42,6 +42,11 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
   }
 
+  fieldset {
+    border: 0;
+    min-width: 0;
+  }
+
   button:disabled {
     cursor: not-allowed;
   }
