@@ -8,8 +8,9 @@ export function Header() {
   return (
     <HeaderBar>
       <HeaderContent>
-        <Link to="/" aria-label="Coffee Delivery — página inicial">
+        <Link to="/">
           <Logo />
+          <span className="sr-only"> — página inicial</span>
         </Link>
 
         <Actions>

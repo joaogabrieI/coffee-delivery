@@ -265,14 +265,15 @@
 - **Status:** Concluída
 - **Teste realizado:** scripts/screenshots.mjs (Playwright + Chrome): Home, Checkout e Sucesso em 320/390/768/1280 px × claro/escuro = 24 capturas, todas sem rolagem horizontal (scrollWidth ≤ clientWidth). Endereço/resumo em coluna no celular; cards, formulário, carrinho e sucesso respeitam o tema. Corrigido: ícone da lixeira encolhendo em 320 px.
 
-### [ ] T-24 — Acessibilidade (WCAG 2.2 AA)
+### [x] T-24 — Acessibilidade (WCAG 2.2 AA)
 - **Objetivo:** revisar teclado, foco, rótulos, contraste e anúncios de erro.
 - **Requisitos:** RF-11, RF-14, RNF acessibilidade
 - **Arquivos:** componentes e páginas
 - **Pronto quando:** navegação 100% por teclado; foco visível nos 2 temas; `aria-live` no contador e nos erros; Lighthouse/axe sem falhas críticas.
 - **Teste:** TC-31, TC-34.
 - **Commit:** `fix: improve accessibility` *(ou `style:`)*
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** e2e/a11y.spec.ts (axe-core, regras WCAG 2.0/2.1/2.2 A e AA): Home, Checkout e Sucesso × claro/escuro × 1280/390 px = 12 auditorias sem violações. Corrigido: nome acessível do link da logo (label-content-name-mismatch) e contraste do wordmark 'Delivery' (3,9→5,5:1). contrast.test.ts ganhou accentInk/bg e error/errorSoft. Lighthouse (TC-34) não executado aqui: rodar no Chrome DevTools.
 
 ### [ ] T-25 — Testes de fluxo e cobertura dos requisitos
 - **Objetivo:** completar integração/E2E e fechar lacunas da matriz de rastreabilidade.

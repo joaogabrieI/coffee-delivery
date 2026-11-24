@@ -4,7 +4,7 @@ import { LogoWrapper, Wordmark } from './styles'
 /**
  * Logo original criada com IA (PRD §7.4). SVG inline para usar as cores do tema
  * atual — no dark mode ela troca sozinha, sem precisar de outro arquivo.
- * O texto é decorativo: o nome acessível vem do link que envolve a logo.
+ * O texto "Coffee Delivery" é o nome acessível do link que envolve a logo.
  */
 export function Logo() {
   const { colors } = useTheme()
@@ -49,9 +49,8 @@ export function Logo() {
           strokeLinecap="round"
         />
       </svg>
-      <Wordmark aria-hidden="true">
-        <span>Coffee</span>
-        <span>Delivery</span>
+      <Wordmark>
+        <span>Coffee</span> <span>Delivery</span>
       </Wordmark>
     </LogoWrapper>
   )

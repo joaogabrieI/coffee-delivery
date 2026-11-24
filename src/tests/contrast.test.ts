@@ -24,6 +24,8 @@ const pairs: Pair[] = [
   ['textMuted', 'bg', 4.5],
   ['primaryInk', 'primarySoft', 4.5],
   ['accentInk', 'accentSoft', 4.5],
+  ['accentInk', 'bg', 4.5],
+  ['error', 'errorSoft', 4.5],
   ['accentText', 'accent', 4.5],
   ['primaryText', 'primaryStrong', 4.5],
   ['error', 'bg', 4.5],

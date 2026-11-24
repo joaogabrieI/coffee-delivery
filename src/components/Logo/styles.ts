@@ -19,6 +19,6 @@ export const Wordmark = styled.span`
   }
 
   span:last-child {
-    color: ${({ theme }) => theme.colors.accentStrong};
+    color: ${({ theme }) => theme.colors.accentInk};
   }
 `
