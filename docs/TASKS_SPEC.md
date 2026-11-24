@@ -117,14 +117,15 @@
 - **Status:** Concluída
 - **Teste realizado:** pricing.test.ts: TC-09, TC-10, TC-11, TC-12, TC-13 + buildCartLines, clampQuantity, integridade do catálogo e existência das 14 imagens — 55 testes passando.
 
-### [ ] T-10 — Header e logo
+### [x] T-10 — Header e logo
 - **Objetivo:** Header com logo, `ThemeToggle` e espaço para o contador.
 - **Requisitos:** RF-04 (base), RF-16
 - **Arquivos:** `src/components/Header/`, `src/components/PageLayout/`
 - **Pronto quando:** logo visível nos 2 temas; navegação por teclado funcional.
 - **Teste:** TC-33 + manual (teclado).
 - **Commit:** `feat: add header with brand logo`
-- **Status:** A fazer
+- **Status:** Concluída
+- **Teste realizado:** header.test.tsx: logo é link para / com nome acessível; botão de tema presente; 1º Tab foca o skip link. Manual: Header renderizado no navegador com Baloo 2 carregada.
 
 ### [ ] T-11 — Catálogo: `CoffeeCard` e `CoffeeCatalog` (responsivos)
 - **Objetivo:** exibir os cafés com imagem, nome, descrição, preço e tags.

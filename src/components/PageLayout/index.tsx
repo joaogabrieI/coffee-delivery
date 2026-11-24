@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import { ThemeToggle } from '../ThemeToggle'
+import { Header } from '../Header'
+import { Main, SkipLink } from './styles'
 
 /**
  * Layout comum a todas as rotas: link "Pular para o conteúdo", Header e <main>.
@@ -27,11 +28,11 @@ export function PageLayout() {
 
   return (
     <>
-      <a href="#conteudo">Pular para o conteúdo</a>
-      <ThemeToggle />
-      <main id="conteudo" ref={mainRef}>
+      <SkipLink href="#conteudo">Pular para o conteúdo</SkipLink>
+      <Header />
+      <Main id="conteudo" ref={mainRef}>
         <Outlet />
-      </main>
+      </Main>
     </>
   )
 }
